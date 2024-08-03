@@ -1,0 +1,36 @@
+<div class="flex flex-col justify-center items-center animate-blurred-fade-in mb-20">
+
+    <h2 class="text-4xl text-zinc-600">Historial de libros</h2>
+    
+    <p-table 
+        [value]="lstHistory" 
+        class="w-full mt-4" 
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50]"
+    >
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="libro.titulo" style="width:20%">Titulo libro <p-sortIcon field="libro.titulo" /> </th>
+                <th pSortableColumn="usuario.nombre" style="width:20%">Usuario <p-sortIcon field="usuario.nombre" /> </th>
+                <th pSortableColumn="actionPerformedEnum" style="width:20%">Acción <p-sortIcon field="actionPerformedEnum" /> </th>
+                <th pSortableColumn="transactionDate" style="width:20%">Fecha <p-sortIcon field="transactionDate" /> </th>
+                <th>Detalle</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-history>
+            <tr>
+                <td>{{ history.libro.titulo }}</td>
+                <td>{{ history.usuario.nombre }}</td>
+                <td><p-tag [value]="getLabel(history.actionPerformedEnum)" [severity]="getSeverity(history.actionPerformedEnum)" /></td>
+                <td>{{ history.transactionDate | date: 'dd/MM/yyyy HH:mm' }}</td>
+                <td><p-button label="Ver detalle" [text]="true" [raised]="true" [routerLink]="['/timeline', history.libro.id]" /></td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+
+</div>

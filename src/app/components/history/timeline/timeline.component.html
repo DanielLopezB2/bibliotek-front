@@ -1,0 +1,25 @@
+<div class="flex flex-col justify-center items-center animate-blurred-fade-in mb-20">
+
+    <h2 class="text-4xl text-zinc-600">Trazabilidad</h2>
+
+    <div class="card mt-10">
+        <p-timeline [value]="books">
+            <ng-template pTemplate="content" let-book>
+                <span class="p-text-secondary">{{ book.transactionDate | date: 'dd/MM/yyyy HH:mm' }}</span>
+            </ng-template>
+            <ng-template pTemplate="opposite" let-book>
+                @if (book.actionPerformedEnum == "PRESTAMO"){
+                    <span class="text-xl text-red-600">Préstamo</span><br>
+                    <span class="font-bold text-red-600"><span class="pi pi-user"></span> {{ book.usuario.nombre }}</span>
+                }
+                @else{
+                    <span class="text-xl text-indigo-700">Devolución</span><br>
+                    <span class="font-bold text-indigo-700"><span class="pi pi-user"></span> {{ book.usuario.nombre }}</span>
+                }
+                
+            </ng-template>
+
+        </p-timeline>
+    </div>
+
+</div>

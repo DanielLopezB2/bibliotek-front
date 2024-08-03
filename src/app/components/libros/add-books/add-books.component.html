@@ -1,0 +1,81 @@
+<div class="flex flex-col justify-center items-center animate-blurred-fade-in">
+
+    <p-toast />
+
+    <h2 class="text-4xl text-zinc-600">Agregar libro</h2>
+
+    <form autocomplete="off" [formGroup]="bookForm">
+
+        <div class="card flex justify-between items-center p-4 gap-4">
+            <div class="flex flex-col gap-1">
+                <label for="username">Titulo <span class="text-red-500">*</span></label>
+                <input 
+                    type="text"
+                    class="w-96"
+                    pInputText 
+                    id="titulo"
+                    formControlName="titulo"/>
+                
+            </div>
+    
+            <div class="flex flex-col gap-1">
+                <label for="username">Autor <span class="text-red-500">*</span></label>
+                <input 
+                    type="text"
+                    class="w-96"
+                    pInputText 
+                    id="autor"
+                    formControlName="autor"/>
+            </div>
+            
+        </div>
+
+        <div class="card flex items-center p-4 gap-4">
+            <div class="flex flex-col gap-1">
+                <label for="username">Año de publicación <span class="text-red-500">*</span></label>
+                <p-inputNumber 
+                    inputId="integeronly" 
+                    [min]="1000" 
+                    [max]="2025" 
+                    class="w-96" 
+                    styleClass="w-full" 
+                    formControlName="year"
+                />
+            </div>
+    
+            <div class="flex flex-col gap-1 text-start">
+                <label for="username">Estado <span class="text-red-500">*</span></label>
+                <p-selectButton 
+                    [options]="stateOptions" 
+                    optionLabel="label" 
+                    optionValue="value"
+                    formControlName="isAvailable"
+                />
+            </div>
+            
+        </div>
+
+        <div class="card flex items-center px-4 ">
+            <span class="font-bold">Campos marcados con <span class="text-red-500">*</span> son requeridos</span>            
+        </div>
+
+    </form>
+
+    <div class="flex justify-start items-center gap-4 mt-10">
+
+        <div>
+            <p-button label="Enviar" (onClick)="onSubmit()" [disabled]="bookForm.invalid" />
+        </div>
+
+        <div>
+            <p-button label="Cancelar" (onClick)="onCancel()" severity="danger" />
+        </div>
+
+        <div>
+            <p-button label="Limpiar" (onClick)="onReset()" severity="secondary" />
+        </div>
+
+
+    </div>
+    
+</div>

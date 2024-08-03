@@ -1,0 +1,44 @@
+<p-confirmDialog />
+<div class="flex flex-col justify-center items-center animate-blurred-fade-in mb-10">
+
+    <h2 class="text-4xl text-zinc-600">Registrar devolución</h2>
+
+    <p-toast />
+    
+
+    <p-table 
+        [value]="lstBooks" 
+        class="w-full mt-4" 
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50]"
+    >
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="titulo" style="width:20%">Titulo <p-sortIcon field="titulo" /> </th>
+                <th pSortableColumn="autor" style="width:20%">Autor <p-sortIcon field="autor" /> </th>
+                <th pSortableColumn="year" style="width:20%">Año <p-sortIcon field="year" /> </th>
+                <th>Estado</th>
+                <th class="text-center">Acción</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-book>
+            <tr>
+                <td>{{ book.titulo }}</td>
+                <td>{{ book.autor }}</td>
+                <td>{{ book.year }}</td>
+                <td><p-tag [value]="getLabel(book.bookActualStatusEnum)" [severity]="getSeverity(book.bookActualStatusEnum)" /></td>
+                <td class="text-center">
+                    <p-button label="Devolver" [text]="true" [raised]="true" (onClick)="confirm1($event, book.id, book)" />
+                </td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+
+
+    
+</div>

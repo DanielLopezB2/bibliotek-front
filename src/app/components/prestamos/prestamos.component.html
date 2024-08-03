@@ -1,0 +1,61 @@
+<div class="flex flex-col justify-center items-center animate-blurred-fade-in">
+
+    <h2 class="text-4xl text-zinc-600">Registrar préstamo</h2>
+
+    <p-toast />
+
+    <form autocomplete="off" [formGroup]="historyFormGroup">
+
+        <div class="card flex justify-between items-center p-4 gap-4">
+            <div class="flex flex-col gap-1">
+                <label for="libro">Libro  <span class="text-red-500">*</span></label>
+                <p-autoComplete 
+                    formControlName="book"
+                    [suggestions]="filteredBooks!" 
+                    (completeMethod)="filterBook($event)" 
+                    field="titulo"
+                    [dropdown]="true"
+                    (onSelect)="onBookSelect($event)"
+                    styleClass="w-96" />
+                    
+            </div>
+        </div>
+
+        <div class="card flex justify-between items-center p-4 gap-4">
+            <div class="flex flex-col gap-1">
+                <label for="email">Usuario  <span class="text-red-500">*</span></label>
+                <p-autoComplete 
+                    [suggestions]="filteredUsers!" 
+                    (completeMethod)="filterUser($event)" 
+                    (onSelect)="onUserSelect($event)"
+                    field="nombre"
+                    [dropdown]="true"
+                    formControlName="user"
+                    styleClass="w-96" />
+            </div>
+        </div>
+
+        <div class="card flex items-center px-4 ">
+            <span class="font-bold">Campos marcados con <span class="text-red-500">*</span> son requeridos</span>            
+        </div>
+
+    </form>
+
+    <div class="flex justify-start items-center gap-4 mt-10">
+
+        <div>
+            <p-button label="Enviar" (onClick)="onSubmit()" />
+        </div>
+
+        <div>
+            <p-button label="Cancelar" severity="danger" (onClick)="onCancel()" />
+        </div>
+
+        <div>
+            <p-button label="Limpiar" severity="secondary" (onClick)="onClear()" />
+        </div>
+
+
+    </div>
+    
+</div>
